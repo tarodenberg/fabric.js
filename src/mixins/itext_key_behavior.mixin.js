@@ -7,9 +7,11 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
     this.hiddenTextarea = fabric.document.createElement('textarea');
 
     this.hiddenTextarea.setAttribute('autocapitalize', 'off');
-    this.hiddenTextarea.style.cssText = 'position: absolute; top: 0; left: -9999px';
+	
+    var elementOffset = this.top * this.canvas.getZoom() + this.canvas.viewportTransform[5];
+    this.hiddenTextarea.style.cssText = 'position: absolute; left: -9999px; top: ' + elementOffset + 'px';
 
-    fabric.document.body.appendChild(this.hiddenTextarea);
+    this.canvas.wrapperEl.appendChild(this.hiddenTextarea);
 
     fabric.util.addListener(this.hiddenTextarea, 'keydown', this.onKeyDown.bind(this));
     fabric.util.addListener(this.hiddenTextarea, 'keypress', this.onKeyPress.bind(this));
