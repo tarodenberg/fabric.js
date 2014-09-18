@@ -8,7 +8,7 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
 
     this.hiddenTextarea.setAttribute('autocapitalize', 'off');
 	
-    var elementOffset = this.top * this.canvas.getZoom() + this.canvas.viewportTransform[5];
+    var elementOffset = Math.round(this.top * this.canvas.getZoom() + this.canvas.viewportTransform[5]);
     this.hiddenTextarea.style.cssText = 'position: absolute; left: -9999px; top: ' + elementOffset + 'px';
 
     this.canvas.wrapperEl.appendChild(this.hiddenTextarea);
